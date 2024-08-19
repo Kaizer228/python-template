@@ -1,9 +1,12 @@
 from flask import Blueprint 
 
 # user controller
-from controllers.auth import loginController 
-from controllers.auth import getUserController
+from controllers.user import loginController 
+from controllers.user import getUserController
 
+# product controller
+from controllers.product import createProduct
+from controllers.product import getProducts
 # here i use our ts structure in mern i ttry to impelement
 # luckly gumana hahaha
 
@@ -17,4 +20,15 @@ def login(id):
 def getUser(id):
     return getUserController(id)
 
+@route.route('/create-product/<id>', methods=['POST'])
+def product(id):
+    return createProduct(id)
+
+@route.route('/get-products/<id>', methods=['GET'])
+def getProducts(id):
+    return getProducts(id)
+
+ 
+ 
+ 
  
