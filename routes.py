@@ -1,31 +1,31 @@
 from flask import Blueprint 
 
-# user controller
-from controllers.user import loginController 
-from controllers.user import getUserController
-
-# product controller
-from controllers.product import createProduct
-from controllers.product import getProducts
-# here i use our ts structure in mern i ttry to impelement
-# luckly gumana hahaha
+ 
+from controllers.user import  getUserController , loginController, registerController
+from controllers.product import createProduct , getProducts
+ 
+ 
 
 route = Blueprint('/', __name__)
 
+@route.route('/register', methods=['POST'])
+def registerHandler():
+    return registerController()
+
 @route.route('/login/<id>', methods=['POST'])
-def login(id):
+def loginHandler(id):
     return loginController(id)
 
 @route.route('/get-credential/<id>', methods=['GET'])
-def getUser(id):
+def getUserHandler(id):
     return getUserController(id)
 
 @route.route('/create-product/<id>', methods=['POST'])
-def product(id):
+def productHandler(id):
     return createProduct(id)
 
 @route.route('/get-products/<id>', methods=['GET'])
-def getProducts(id):
+def getProductsHandler(id):
     return getProducts(id)
 
  
