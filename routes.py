@@ -2,7 +2,7 @@ from flask import Blueprint
 
  
 from controllers.user import  getUserController , loginController, registerController
-from controllers.product import createProduct , getProducts
+from controllers.product import createProductController , getProductController
  
  
 
@@ -22,11 +22,11 @@ def getUserHandler(id):
 
 @route.route('/create-product/<id>', methods=['POST'])
 def productHandler(id):
-    return createProduct(id)
+    return createProductController(id)
 
 @route.route('/get-products/<id>', methods=['GET'])
 def getProductsHandler(id):
-    return getProducts(id)
+    return getProductController(id)
 
  
  
