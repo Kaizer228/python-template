@@ -12,9 +12,9 @@ route = Blueprint('/', __name__)
 def registerHandler():
     return registerController()
 
-@route.route('/login/<id>', methods=['POST'])
-def loginHandler(id):
-    return loginController(id)
+@route.route('/login', methods=['POST'])
+def loginHandler():
+    return loginController();
 
 @route.route('/get-credential/<id>', methods=['GET'])
 def getUserHandler(id):

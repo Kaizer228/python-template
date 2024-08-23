@@ -7,7 +7,7 @@ def registerService(data):
      try:
        user_collection = dynamicCollection("users")
        result = user_collection.insert_one(data)
-       return result ,200
+       return str(result) , 200
      
      #this is a built in func of pymongo to
      # receive if value is unique try/catch
@@ -17,15 +17,16 @@ def registerService(data):
      
      
 def loginService(data):
+  try:
     
-        email = data["email"]
-        user_collection = dynamicCollection("users")
-        result = user_collection.find_one({"email": email})
+     email = data["email"]
+     user_collection = dynamicCollection("users")
+     result = user_collection.find_one({"email": email})
         
-        if result.acknowledged:
-            return jsonify({"message": "Data inserted successfully" , "response" : str(data)}), 200
-      
-        return jsonify({"error": "Failed to insert data"}), 500
+     return result
+    
+  except : 
+        return jsonify({"error": "Failed to log-in"}), 500
         
      
        
