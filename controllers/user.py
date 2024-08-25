@@ -10,17 +10,20 @@ def registerController():
         # name, age = data.get('name'), data.get('age'), 
         
         if not all(data.get(key) for key in ['name', 'age', 'email', 'password']):
-            return jsonify({"message": "Fill all fields"}), 233
+            return jsonify({"message": "Fill all fields", "status" : 404}), 404
        
         response, status_code  = registerService(data)
        
         
         if status_code == 200:
-            return jsonify({"message": "Data inserted successfully" , "response" : response}), 200
+            return jsonify({"message": "Data inserted successfully" , "response" : response, 
+            "status" : status_code}), 200
         if status_code == 234:
-            return jsonify({"message": "User already exist" }), 234
+            return jsonify({"message": "User already exist",
+             "status" : status_code}), 234
      
-        return jsonify({f"message": "Failed to insert data"}), 235
+        return jsonify({f"message": "Failed to insert data",
+             "status" : status_code}), 500
         
     
     except Exception as e:
