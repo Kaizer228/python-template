@@ -35,17 +35,17 @@ def loginController():
         data = request.get_json()
         enteredPass = data.get("password")
         if not all(data.get(key) for key in ['email', 'password']):
-            return jsonify({"message": "Fill all fields"}), 233
+            return jsonify({"message": "Fill all fields", "status" : 404}), 404
         
         response = loginService(data)
         
         if not response:
-           return jsonify({"message": "User not exist"}), 234  
+           return jsonify({"message": "User not exist" , "status" : 234}), 234  
       
         fetchedPass = response.get("password")
         
         if enteredPass != fetchedPass:
-         return jsonify({"message": "Wrong password"}), 235
+         return jsonify({"message": "Wrong password",  "status" : 400}), 400
      
         if response and enteredPass == fetchedPass:
          return jsonify({"message": "Succesfully logged", "response" : str(response)}), 200
